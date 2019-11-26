@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)https://getbootstrap.com/docs/4.1/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://getbootstrap.com/favicon.ico">
+
+    <title>商品编辑页面</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="asserts/css/bootstrap.min.css" th:href="@{/asserts/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+    <style type="text/css">/* Chart.js */
+    @-webkit-keyframes chartjs-render-animation {
+        from {
+            opacity: 0.99
+        }
+        to {
+            opacity: 1
+        }
+    }
+
+    @keyframes chartjs-render-animation {
+        from {
+            opacity: 0.99
+        }
+        to {
+            opacity: 1
+        }
+    }
+
+</style>
+</head>
+
+<body>
+<!--引入topbar片段-->
+<div th:replace="commons/bar::#topbar"></div>
+<div class="container-fluid">
+    <div class="row">
+        <!--引入siderbar片段-->
+        <div th:replace="commons/bar::#sidebar"></div>
+        <div class="col-md-9 ml-sm-auto col-lg-10 px-4 pt-3"></div>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 pt-5">
+            <h2>商品编辑</h2>
+            <div class="table-responsive">
+               <form th:action="@{/flower}" method="post" class="form-horizontal">
+                    <input type="hidden" name="_method" value="put"/>
+                    <input type="hidden" name="fid" th:value="${flower.fid}">
+                    <div class="form-group">
+                        <label>商品名称</label>
+                        <input type="text" name="fname" th:value="${flower.fname}"  class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>商品价格</label>
+                        <input type="text" name="fprice" th:value="${flower.fprice}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>上架时间</label>
+                        <input  type="text" name="fsheiftime" th:value="${#dates.format(flower.fsheiftime,'yyyy-MM-dd')}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>交易量</label>
+                        <input disabled type="text" name="fcount" th:value="${flower.fcount}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit"  value="修改" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
